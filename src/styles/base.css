@@ -1,0 +1,15 @@
+@layer base {
+  html,
+  body,
+  main {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Onest Variable', system-ui, sans-serif;
+  }
+
+  [data-scroll='hidden']::-webkit-scrollbar {
+    display: none;
+  }
+}

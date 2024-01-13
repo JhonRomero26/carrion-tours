@@ -1,0 +1,102 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Header from '@/components/HeaderHero.astro'
+import HeroScreen from '@/components/HeroScreen.astro'
+import PresentationCard from '@/components/PresentationCard.astro'
+import { getPlaces } from '@/services/place'
+
+const places = await getPlaces()
+---
+
+<Layout title="Turismo en loja" description="Turismo en loja">
+  <Header />
+  <main>
+    <HeroScreen
+      id="hero"
+      title={places[0].title}
+      image={places[0].image}
+      location={places[0].location}
+      description={places[0].description}
+      visitDate={places[0].visitDate}
+    >
+      {
+        places.map((place, i) => (
+          <PresentationCard
+            image={place.image}
+            title={place.title}
+            location={place.location}
+            visitDate={place.visitDate}
+            item={String(i + 1)}
+          />
+        ))
+      }
+    </HeroScreen>
+  </main>
+</Layout>
+
+<script>
+  import {
+    averageImageColor,
+    contrastColor,
+    rgb2hex,
+  } from '@/utils/calculate_colors'
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const $heroImage = document.querySelector('#hero-image') as HTMLImageElement
+    const $heroBackground = document.querySelector(
+      '#hero-background'
+    ) as HTMLElement
+
+    const $slides = document.querySelectorAll('[data-id=slide]')
+    const $heroInfo = document.querySelector('#hero-info') as HTMLElement
+
+    const $menuButton = document.querySelector('#menu-button')
+    const $menu = document.querySelector('#header-menu')
+
+    const changeColors = ({ image }: { image: HTMLImageElement }) => {
+      const rgb = averageImageColor(image)
+      const contrastWhite = contrastColor({
+        rgb1: rgb,
+        rgb2: { r: 240, g: 240, b: 240 },
+      })
+      const contrastDark = contrastColor({
+        rgb1: rgb,
+        rgb2: { r: 30, g: 41, b: 59 },
+      })
+
+      const colorContrasted =
+        Math.max(contrastWhite, contrastDark) === contrastWhite
+          ? 'text-slate-100'
+          : 'text-slate-900'
+      $heroInfo.classList.remove('text-slate-100', 'text-slate-900')
+      $heroInfo.classList.add(colorContrasted)
+
+      $heroBackground.style.setProperty('--from-background', rgb2hex(rgb, 95))
+
+      $menuButton!.classList.remove('text-slate-100', 'text-slate-900')
+      $menuButton!.classList.add(colorContrasted)
+      $menu!.classList.remove('md:text-slate-100', 'md:text-slate-900')
+      $menu!.classList.add(`md:${colorContrasted}`)
+    }
+
+    changeColors({ image: $heroImage })
+    if ($slides)
+      $slides.forEach((slide) => {
+        const image = slide.querySelector('img') as HTMLImageElement
+
+        slide.addEventListener('click', () => {
+          if ($heroImage.src !== image.src) {
+            changeColors({ image })
+
+            $heroImage.src = image.src
+            $heroInfo.querySelector('[aria-label="title"]')!.textContent =
+              slide.querySelector('[aria-label="title"]')!.textContent
+            $heroInfo.querySelector('[aria-label="location"]')!.textContent =
+              slide.querySelector('[aria-label="location"]')!.textContent
+            $heroInfo.querySelector('[aria-label="calendar"]')!.textContent =
+              slide.querySelector('[aria-label="calendar"]')!.textContent
+          }
+        })
+      })
+  })
+</script>

@@ -1,0 +1,5 @@
+@layer utilities {
+  .bg-cssvar {
+    background: var(--bg-color);
+  }
+}

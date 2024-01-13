@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Loja: El paraíso artistico del Ecuador",
+    "description": "Una ciudad andina con música, cultura, naturaleza y un parque nacional que alberga una gran biodiversidad",
+    "image": "/images/Ecuador_loja.webp",
+    "location": "Loja, Loja - Ecuador",
+    "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
+    "visitDate": "Todo el año",
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+  },
+  {
+    "title": "Sahara Desert",
+    "description": "Una ciudad andina con música, cultura, naturaleza y un parque nacional que alberga una gran biodiversidad",
+    "image": "/images/loja_puerta_ciudad.webp",
+    "location": "Loja, Loja - Ecuador",
+    "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
+    "visitDate": "Todo el año",
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+  },
+  {
+    "title": "Sahara Desert",
+    "description": "Una ciudad andina con música, cultura, naturaleza y un parque nacional que alberga una gran biodiversidad",
+    "image": "/images/vilcabamba_mandango.webp",
+    "location": "Loja, Loja - Ecuador",
+    "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
+    "visitDate": "Todo el año",
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+  },
+  {
+    "title": "Sahara Desert",
+    "description": "Una ciudad andina con música, cultura, naturaleza y un parque nacional que alberga una gran biodiversidad",
+    "image": "/images/vilcabamba_cascada_el_palto.webp",
+    "location": "Loja, Loja - Ecuador",
+    "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
+    "visitDate": "Todo el año",
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+  }
+]

@@ -1,0 +1,50 @@
+---
+import { Icon } from 'astro-icon/components'
+interface Props {
+  image: string
+  title: string
+  item?: string
+  visitDate: string
+  location: string
+}
+
+const { image, title, item, location, visitDate } = Astro.props
+---
+
+<article
+  data-id="slide"
+  class="cursor-pointer w-full min-h-56 overflow-hidden rounded relative aspect-video isolate"
+>
+  <picture class="block w-full h-full">
+    <img
+      class="h-full w-full object-center object-cover"
+      loading="lazy"
+      src={image}
+      alt={title}
+      aria-label="image"
+    />
+  </picture>
+  <div
+    aria-label="content"
+    class="absolute top-0 left-0 p-4 h-full w-full from-transparent from-10% to-black/90 bg-gradient-to-b flex flex-col text-white justify-end"
+  >
+    {
+      item && (
+        <span class="absolute font-bold opacity-70 text-7xl -top-4 right-2">
+          {item.padStart(2, '0')}
+        </span>
+      )
+    }
+    <h3 aria-label="title" class="text-lg font-bold mb-1">{title}</h3>
+    <div class="min-h-10 flex flex-col gap-1">
+      <div class="flex items-center gap-2">
+        <Icon name="tabler:map-pin" />
+        <span aria-label="location" class="text-sm">{location}</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <Icon name="tabler:calendar" />
+        <span aria-label="calendar" class="text-sm">{visitDate}</span>
+      </div>
+    </div>
+  </div>
+</article>

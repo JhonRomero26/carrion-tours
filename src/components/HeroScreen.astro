@@ -1,0 +1,72 @@
+---
+import { Icon } from 'astro-icon/components'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = {
+  image: string
+  title: string
+  location: string
+  visitDate: string
+  description: string
+} & HTMLAttributes<'section'>
+
+const { id, title, image, location, visitDate, description } = Astro.props
+---
+
+<section
+  id={id}
+  data-id="hero-presentation"
+  class="w-full h-screen overflow-hidden relative"
+>
+  <div class="h-full px-12 pt-16">
+    <div
+      class="flex flex-col h-full md:flex-row md:justify-between items-center"
+    >
+      <div id="hero-info" class="py-8 max-w-sm max-md:text-center">
+        <h2 aria-label="title" class="font-bold mb-4 text-3xl">
+          {title}
+        </h2>
+        <div class="w-full mt-2 flex flex-col gap-2 font-medium text-center">
+          <div class="flex items-center gap-2">
+            <Icon name="tabler:map-pin" />
+            <span aria-label="location">{location}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="tabler:calendar" />
+            <span aria-label="calendar">{visitDate}</span>
+          </div>
+        </div>
+        <p class="mt-4">
+          {description}
+        </p>
+      </div>
+
+      <div class="max-w-sm overflow-hidden w-full h-full">
+        <div
+          data-scroll="hidden"
+          id="slides"
+          class="flex overflow-y-auto py-4 flex-col gap-4 h-full"
+        >
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <picture
+    id="hero-picture"
+    class="absolute -z-10 top-0 left-0 block w-full h-full"
+  >
+    <img
+      id="hero-image"
+      class="h-full animate-duration-500 animate-ease-in animate-fade animate-once w-full object-cover object-center"
+      src={image}
+    />
+    <span
+      id="hero-background"
+      class="absolute top-0 left-0 w-full h-full bg-gradient-to-b md:bg-gradient-to-r"
+      style={{
+        '--tw-gradient-stops': 'var(--from-background) 25%, transparent 100%',
+      }}></span>
+  </picture>
+</section>
