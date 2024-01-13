@@ -4,7 +4,23 @@ export const headerRoutes = [
     path: '/',
   },
   {
-    label: 'Lugares',
+    label: 'Rutas mágicas',
     path: '/places',
+  },
+  {
+    label: 'Loja de antaño',
+    path: '/workshops',
+  },
+  {
+    label: 'Festividades',
+    path: '/festivities',
+  },
+  {
+    label: 'Gastronomía',
+    path: '/gastronomy',
+  },
+  {
+    label: 'Talleres',
+    path: '/workshops',
   },
 ]
