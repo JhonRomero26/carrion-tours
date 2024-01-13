@@ -6,7 +6,8 @@
     "location": "Loja, Loja - Ecuador",
     "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
     "visitDate": "Todo el año",
-    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do",
+    "categories": ["parques", "monumentos", "iglesias"]
   },
   {
     "title": "Sahara Desert",
@@ -15,24 +16,27 @@
     "location": "Loja, Loja - Ecuador",
     "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
     "visitDate": "Todo el año",
-    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do",
+    "categories": ["monumentos", "cultura"]
   },
   {
-    "title": "Sahara Desert",
-    "description": "Una ciudad andina con música, cultura, naturaleza y un parque nacional que alberga una gran biodiversidad",
+    "title": "Cerro Mandango",
+    "description": "Un imponente gigante de piedra que vigila Vilcabamba, ¡donde la aventura y la historia se encuentran en un paisaje de ensueño para los amantes de la naturaleza y las leyendas",
     "image": "/images/vilcabamba_mandango.webp",
     "location": "Loja, Loja - Ecuador",
     "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
     "visitDate": "Todo el año",
-    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do",
+    "categories": [""]
   },
   {
     "title": "Sahara Desert",
-    "description": "Una ciudad andina con música, cultura, naturaleza y un parque nacional que alberga una gran biodiversidad",
+    "description": "Imagina una montaña que cambia de forma según el ángulo desde el que la mires, una dama recostada, un palacio imponente o incluso un gigantesco aborigen observando el cielo. ¡Eso es Mandango! Con sus caprichosas formas, este cerro ha capturado la imaginación de locales y visitantes por igual1.",
     "image": "/images/vilcabamba_cascada_el_palto.webp",
-    "location": "Loja, Loja - Ecuador",
+    "location": "Loja, Vilcabamba - Ecuador",
     "locationMapUrl": "https://www.google.com/maps/place/Loja/@-4.0075952,-79.2083787,13z/data=!3m1!4b1!4m6!3m5!1s0x91cb480661b91d2d:0x8e12137cdc1eee09!8m2!3d-3.9952065!4d-79.2022123!16zL20vMDQxcHRu?entry=ttu",
     "visitDate": "Todo el año",
-    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do"
+    "reservationUrl": "https://hotels.cloudbeds.com/es/reservation/zu69Do",
+    "categories": [""]
   }
 ]

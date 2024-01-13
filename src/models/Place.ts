@@ -6,4 +6,5 @@ export interface Place {
   locationMapUrl: string
   visitDate: string
   reservationUrl: string
+  categories?: string[]
 }

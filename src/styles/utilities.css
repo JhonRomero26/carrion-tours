@@ -2,4 +2,19 @@
   .bg-cssvar {
     background: var(--bg-color);
   }
+
+  /* Animations */
+  .hidden-animated {
+    animation-name: hidden;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes hidden {
+    to {
+      display: none;
+      opacity: 0;
+    }
+  }
 }

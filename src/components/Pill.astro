@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'span'>
+const { class: className, ...restProps } = Astro.props
+---
+
+<span
+  {...restProps}
+  class={`px-2 py-1 rounded-full text-xs font-medium ${className}`.trim()}
+  ><slot /></span
+>
