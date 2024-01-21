@@ -30,7 +30,7 @@ const {
 <section
   id={id}
   data-id="hero-presentation"
-  class="w-full h-screen overflow-hidden relative"
+  class="w-full overflow-hidden relative h-full"
   style={{
     '--hero-background': '',
   }}
@@ -39,7 +39,11 @@ const {
     <div
       class="flex flex-col gap-8 h-full md:flex-row md:justify-between items-center"
     >
-      <div id="hero-info" class="max-w-md max-md:text-center">
+      <div
+        id="hero-info"
+        data-scroll="hidden"
+        class="overflow-y-auto py-8 max-w-md max-md:text-center"
+      >
         <h2 id="title" class="font-bold mb-4 text-3xl">
           {title}
         </h2>
@@ -61,12 +65,8 @@ const {
             <span id="calendar">{visitDate}</span>
           </div>
         </div>
-        <div class="max-md:h-32 mt-4 max-md:overflow-hidden">
-          <p
-            id="hero-description"
-            data-scroll="hidden"
-            class="overflow-y-auto h-full"
-          >
+        <div class="max-md:overflow-hidden">
+          <p id="hero-description" data-scroll="hidden" class="mt-4 h-full">
             {description}
           </p>
         </div>
@@ -87,35 +87,45 @@ const {
             rel="noreferrer"
             target="_blank"
             href={mapsUrl}
-            style={{
-              '--from-background': '',
-            }}
           >
             <Icon name="tabler:map" />
             <span>Mirar en el mapa</span>
           </a>
         </div>
+        <div class="mt-8 flex justify-center">
+          <button
+            id="show-more"
+            class="flex gap-2 items-center bg-white
+             text-blue-900 px-4 py-2 rounded md:hidden"
+          >
+            <Icon name="tabler:chevron-down" />
+            <span>Mostrar más</span>
+          </button>
+        </div>
       </div>
 
-      <div class="max-w-sm flex flex-col gap-4 overflow-hidden w-full h-full">
-        <div class="w-full">
+      <div
+        id="slides-container"
+        class="md:max-w-sm max-md:absolute flex flex-col gap-4 overflow-hidden items-center max-md:backdrop-blur-xl max-md:w-full h-full"
+      >
+        <div class="max-md:max-w-sm w-full h-full">
+          <header class="w-full pb-2">
+            <div class="flex px-4 py-2 gap-2 bg-white/80 rounded items-center">
+              <Icon name="tabler:search" class="text-slate-800 text-xl" />
+              <input
+                id="hero-search"
+                class="bg-transparent w-full outline-0 text-slate-800 placeholder:text-slate-700"
+                placeholder="Buscar..."
+              />
+            </div>
+          </header>
           <div
-            class="flex overflow-hidden px-4 py-2 gap-2 bg-white/80 rounded items-center"
+            id="slides"
+            data-scroll="hidden"
+            class="flex w-full overflow-y-auto py-4 flex-col gap-4 h-full"
           >
-            <Icon name="tabler:search" class="text-slate-800 text-xl" />
-            <input
-              id="hero-search"
-              class="bg-transparent w-full outline-0 text-slate-800 placeholder:text-slate-700"
-              placeholder="Buscar..."
-            />
+            <slot />
           </div>
-        </div>
-        <div
-          data-scroll="hidden"
-          id="slides"
-          class="flex overflow-y-auto py-4 flex-col gap-4 h-full"
-        >
-          <slot />
         </div>
       </div>
     </div>
@@ -134,3 +144,19 @@ const {
       }}></span>
   </picture>
 </section>
+
+<script>
+  const $slidesContainer = document.querySelector(
+    '#slides-container'
+  ) as HTMLElement
+  const $showMore = document.querySelector('#show-more') as HTMLButtonElement
+
+  $slidesContainer.addEventListener('click', (e) => {
+    e.stopPropagation()
+    $slidesContainer.classList.add('max-md:hidden-animated')
+  })
+
+  $showMore.addEventListener('click', () => {
+    $slidesContainer.classList.remove('max-md:hidden-animated')
+  })
+</script>
