@@ -86,7 +86,7 @@ const places = await getPlaces()
     $slides.forEach((slide) => {
       const image = slide.querySelector('img') as HTMLImageElement
 
-      slide.addEventListener('click', () => {
+      slide.addEventListener('click', (e) => {
         if ($heroImage.src !== image.src) {
           changeColors({ image })
 

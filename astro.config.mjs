@@ -21,6 +21,7 @@ export default defineConfig({
           'map',
           'calendar-plus',
           'chevron-down',
+          'x',
         ],
       },
     }),
