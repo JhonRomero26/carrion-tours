@@ -7,18 +7,31 @@ interface Props {
   description: string
   visitDate: string
   location: string
+  mapsUrl: string
+  reservationUrl: string
   item?: string
   categories?: string[]
 }
 
-const { image, title, item, location, visitDate, categories, description } =
-  Astro.props
+const {
+  image,
+  title,
+  item,
+  location,
+  visitDate,
+  categories,
+  description,
+  mapsUrl,
+  reservationUrl,
+} = Astro.props
 ---
 
 <article
   data-id="slide"
   class="cursor-pointer w-full min-h-56 overflow-hidden rounded relative aspect-video isolate"
   data-description={description}
+  data-maps-url={mapsUrl}
+  data-reservation-url={reservationUrl}
 >
   <picture class="block w-full h-full">
     <img
@@ -26,11 +39,11 @@ const { image, title, item, location, visitDate, categories, description } =
       loading="lazy"
       src={image}
       alt={title}
-      aria-label="image"
+      id="image"
     />
   </picture>
   <div
-    aria-label="content"
+    id="content"
     class="absolute top-0 left-0 p-4 h-full w-full from-transparent from-10% to-black/90 bg-gradient-to-b flex flex-col text-white justify-end"
   >
     {
@@ -40,8 +53,8 @@ const { image, title, item, location, visitDate, categories, description } =
         </span>
       )
     }
-    <h3 aria-label="title" class="text-lg font-bold mb-1">{title}</h3>
-    <div aria-label="categories" class="py-1 flex flex-wrap gap-2">
+    <h3 id="title" class="text-lg font-bold mb-1">{title}</h3>
+    <div id="categories" class="py-1 flex flex-wrap gap-2">
       {
         categories &&
           categories.map((category) => (
@@ -52,11 +65,11 @@ const { image, title, item, location, visitDate, categories, description } =
     <div class="min-h-10 flex flex-col gap-1">
       <div class="flex items-center gap-2">
         <Icon name="tabler:map-pin" />
-        <span aria-label="location" class="text-sm">{location}</span>
+        <span id="location" class="text-sm">{location}</span>
       </div>
       <div class="flex items-center gap-2">
         <Icon name="tabler:calendar" />
-        <span aria-label="calendar" class="text-sm">{visitDate}</span>
+        <span id="calendar" class="text-sm">{visitDate}</span>
       </div>
     </div>
   </div>

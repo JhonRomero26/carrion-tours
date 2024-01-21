@@ -1,6 +1,5 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import Header from '@/components/HeaderHero.astro'
 import HeroScreen from '@/components/HeroScreen.astro'
 import PresentationCard from '@/components/PresentationCard.astro'
 import { getPlaces } from '@/services/place'
@@ -9,7 +8,6 @@ const places = await getPlaces()
 ---
 
 <Layout title="Turismo en loja" description="Turismo en loja">
-  <Header />
   <main>
     <HeroScreen
       id="hero"
@@ -19,6 +17,8 @@ const places = await getPlaces()
       description={places[0].description}
       visitDate={places[0].visitDate}
       categories={places[0].categories}
+      mapsUrl={places[0].locationMapUrl}
+      reservationUrl={places[0].reservationUrl}
     >
       {
         places.map((place, i) => (
@@ -30,6 +30,8 @@ const places = await getPlaces()
             location={place.location}
             visitDate={place.visitDate}
             item={String(i + 1)}
+            mapsUrl={place.locationMapUrl}
+            reservationUrl={place.reservationUrl}
           />
         ))
       }
@@ -44,10 +46,8 @@ const places = await getPlaces()
     rgb2hex,
   } from '@/utils/calculate_colors'
 
+  const $hero = document.querySelector('#hero') as HTMLImageElement
   const $heroImage = document.querySelector('#hero-image') as HTMLImageElement
-  const $heroBackground = document.querySelector(
-    '#hero-background'
-  ) as HTMLElement
 
   const $slides = document.querySelectorAll('[data-id=slide]')
   const $heroInfo = document.querySelector('#hero-info') as HTMLElement
@@ -70,10 +70,10 @@ const places = await getPlaces()
       Math.max(contrastWhite, contrastDark) === contrastWhite
         ? 'text-slate-100'
         : 'text-slate-900'
-    $heroInfo.classList.remove('text-slate-100', 'text-slate-900')
-    $heroInfo.classList.add(colorContrasted)
 
-    $heroBackground.style.setProperty('--from-background', rgb2hex(rgb, 95))
+    $hero.classList.remove('text-slate-100', 'text-slate-900')
+    $hero.classList.add(colorContrasted)
+    $hero.style.setProperty('--hero-background', rgb2hex(rgb, 95))
 
     $menuButton!.classList.remove('text-slate-100', 'text-slate-900')
     $menuButton!.classList.add(colorContrasted)
@@ -91,15 +91,25 @@ const places = await getPlaces()
           changeColors({ image })
 
           $heroImage.src = image.src
-          $heroInfo.querySelector('[aria-label="title"]')!.textContent =
-            slide.querySelector('[aria-label="title"]')!.textContent
-          $heroInfo.querySelector('[aria-label="location"]')!.textContent =
-            slide.querySelector('[aria-label="location"]')!.textContent
-          $heroInfo.querySelector('[aria-label="calendar"]')!.textContent =
-            slide.querySelector('[aria-label="calendar"]')!.textContent
-          $heroInfo.querySelector(
-            '[aria-label="hero-description"]'
-          )!.textContent = slide.getAttribute('data-description')
+          $heroInfo.querySelector('#title')!.textContent =
+            slide.querySelector('#title')!.textContent
+
+          $heroInfo.querySelector('#location')!.textContent =
+            slide.querySelector('#location')!.textContent
+
+          $heroInfo.querySelector('#calendar')!.textContent =
+            slide.querySelector('#calendar')!.textContent
+
+          $heroInfo.querySelector('#hero-description')!.textContent =
+            slide.getAttribute('data-description')
+
+          $heroInfo
+            .querySelector('#reservation-url')!
+            .setAttribute('href', slide.getAttribute('data-reservation-url')!)
+
+          $heroInfo
+            .querySelector('#maps-url')!
+            .setAttribute('href', slide.getAttribute('data-maps-url')!)
         }
       })
     })
@@ -108,11 +118,9 @@ const places = await getPlaces()
 
   $search.addEventListener('input', () => {
     $slides.forEach((slide) => {
-      const title = slide.querySelector('[aria-label="title"]')!
-      const location = slide.querySelector('[aria-label="location"]')!
-      const categoryContainer = slide.querySelector(
-        '[aria-label="categories"]'
-      )!
+      const title = slide.querySelector('#title')!
+      const location = slide.querySelector('#location')!
+      const categoryContainer = slide.querySelector('#categories')!
       const categories = Array.of(...categoryContainer.children)
         .map((el) => el.textContent)
         .join(' ')

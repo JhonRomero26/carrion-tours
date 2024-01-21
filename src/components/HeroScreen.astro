@@ -10,26 +10,40 @@ type Props = {
   visitDate: string
   description: string
   categories?: string[]
+  mapsUrl: string
+  reservationUrl: string
 } & HTMLAttributes<'section'>
 
-const { id, title, image, location, visitDate, description, categories } =
-  Astro.props
+const {
+  id,
+  title,
+  image,
+  location,
+  visitDate,
+  description,
+  categories,
+  reservationUrl,
+  mapsUrl,
+} = Astro.props
 ---
 
 <section
   id={id}
   data-id="hero-presentation"
   class="w-full h-screen overflow-hidden relative"
+  style={{
+    '--hero-background': '',
+  }}
 >
   <div class="h-full px-12 pt-16">
     <div
       class="flex flex-col gap-8 h-full md:flex-row md:justify-between items-center"
     >
       <div id="hero-info" class="max-w-md max-md:text-center">
-        <h2 aria-label="title" class="font-bold mb-4 text-3xl">
+        <h2 id="title" class="font-bold mb-4 text-3xl">
           {title}
         </h2>
-        <div class="flex max-md:justify-center flex-wrap gap-2">
+        <div class="flex my-6 max-md:justify-center flex-wrap gap-2">
           {
             categories &&
               categories.map((category) => (
@@ -40,21 +54,46 @@ const { id, title, image, location, visitDate, description, categories } =
         <div class="w-full mt-2 flex flex-col gap-2 font-medium text-center">
           <div class="flex items-center gap-2">
             <Icon name="tabler:map-pin" />
-            <span aria-label="location">{location}</span>
+            <span id="location">{location}</span>
           </div>
           <div class="flex items-center gap-2">
             <Icon name="tabler:calendar" />
-            <span aria-label="calendar">{visitDate}</span>
+            <span id="calendar">{visitDate}</span>
           </div>
         </div>
-        <div class="max-md:h-28 mt-4 max-md:overflow-hidden">
+        <div class="max-md:h-32 mt-4 max-md:overflow-hidden">
           <p
+            id="hero-description"
             data-scroll="hidden"
-            aria-label="hero-description"
             class="overflow-y-auto h-full"
           >
             {description}
           </p>
+        </div>
+        <div class="flex mt-6 max-md:justify-center gap-2">
+          <a
+            id="reservation-url"
+            class="px-4 py-2 rounded flex gap-2 items-center hover:bg-blue-800 bg-blue-900 text-white transition-colors"
+            rel="noreferrer"
+            target="_blank"
+            href={reservationUrl}
+          >
+            <Icon name="tabler:calendar-plus" />
+            <span>Reserva tu visita</span>
+          </a>
+          <a
+            id="maps-url"
+            class="px-4 py-2 rounded flex gap-2 items-center hover:bg-white text-blue-900 bg-white/85 transition-colors"
+            rel="noreferrer"
+            target="_blank"
+            href={mapsUrl}
+            style={{
+              '--from-background': '',
+            }}
+          >
+            <Icon name="tabler:map" />
+            <span>Mirar en el mapa</span>
+          </a>
         </div>
       </div>
 
@@ -82,20 +121,16 @@ const { id, title, image, location, visitDate, description, categories } =
     </div>
   </div>
 
-  <picture
-    id="hero-picture"
-    class="absolute -z-10 top-0 left-0 block w-full h-full"
-  >
+  <picture class="absolute -z-10 top-0 left-0 block w-full h-full">
     <img
       id="hero-image"
       class="h-full animate-duration-500 animate-ease-in animate-fade animate-once w-full object-cover object-center"
       src={image}
     />
     <span
-      id="hero-background"
       class="absolute top-0 left-0 w-full h-full bg-gradient-to-b md:bg-gradient-to-r"
       style={{
-        '--tw-gradient-stops': 'var(--from-background) 25%, transparent 100%',
+        '--tw-gradient-stops': 'var(--hero-background) 25%, transparent 100%',
       }}></span>
   </picture>
 </section>

@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Rutas mágicas",
+    "image": "/images/vilcabamba_mandango.webp",
+    "path": "/places"
+  },
+  {
+    "title": "Loja de antaño",
+    "image": "/images/loja_puerta_ciudad.webp",
+    "path": "/loja-monuments"
+  },
+  {
+    "title": "Festividades",
+    "image": "/images/loja_torre_san_sebastian.webp",
+    "path": "/festivities"
+  },
+  {
+    "title": "Gastronomía",
+    "image": "/images/gastronomy.webp",
+    "path": "/gastronomy"
+  },
+  {
+    "title": "Talleres",
+    "image": "/images/coffe_route.webp",
+    "path": "/workshops"
+  }
+]

@@ -13,7 +13,14 @@ export default defineConfig({
   integrations: [
     icon({
       include: {
-        tabler: ['menu-2', 'map-pin', 'calendar', 'search'],
+        tabler: [
+          'menu-2',
+          'map-pin',
+          'calendar',
+          'search',
+          'map',
+          'calendar-plus',
+        ],
       },
     }),
   ],

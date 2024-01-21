@@ -1,0 +1,29 @@
+---
+type Props = {
+  image: string
+  alt?: string
+  clipPath?: string
+}
+
+const { image, alt, clipPath } = Astro.props
+---
+
+<section class="relative">
+  <div class="container flex h-[75vh] justify-center items-center">
+    <slot />
+  </div>
+
+  <picture
+    class="absolute h-full w-full top-0 left-0 -z-10 before:inset-0 before:bg-black/25 before:abosute"
+    style={{
+      clipPath,
+    }}
+  >
+    <img
+      class="h-full w-full object-cover object-center"
+      src={image}
+      alt={alt}
+    />
+    <span class="absolute top-0 left-0 w-full h-full bg-blue-900/30"></span>
+  </picture>
+</section>

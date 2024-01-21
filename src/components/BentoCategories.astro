@@ -1,0 +1,19 @@
+---
+import BentoItem from '@/components/BentoItem.astro'
+import categories from '@/data/categories.json'
+---
+
+<div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-2 *:h-56">
+  {
+    categories.map(({ title, path, image }) => (
+      <a href={path} class="group flex">
+        <BentoItem
+          gradientBg="from-black/65 to-black/25"
+          image={image}
+          title={title}
+          description="Una ciudad andina con más de 1000 años de historia, cultura, naturaleza y un parque nacional que alberga una gran biodiversidad"
+        />
+      </a>
+    ))
+  }
+</div>

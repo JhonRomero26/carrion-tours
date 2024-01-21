@@ -1,0 +1,41 @@
+---
+type Props = {
+  title: string
+  description: string
+  image: string
+  class?: string
+  gradientBg?: string
+  toBackground?: string
+}
+
+const {
+  title,
+  gradientBg = 'from-blue-900/90 to-blue-700/30',
+  image,
+  class: className,
+} = Astro.props
+---
+
+<article
+  class:list={[
+    'relative overflow-hidden rounded flex flex-col justify-center items-center p-8 w-full h-full text-white',
+    className,
+  ]}
+>
+  <div class="w-full text-center">
+    <h2 class="uppercase text-xl lg:text-3xl font-bold mb-4">{title}</h2>
+  </div>
+  <picture class="absolute top-0 left-0 w-full h-full -z-10">
+    <img
+      class="h-full transition-transform group-hover:scale-105 w-full object-cover object-center"
+      src={image}
+      alt={title}
+      loading="lazy"
+    />
+    <span
+      class:list={[
+        'group-hover:opacity-40 transition-opacity absolute top-0 left-0 w-full h-full bg-gradient-to-tr',
+        gradientBg,
+      ]}></span>
+  </picture>
+</article>
