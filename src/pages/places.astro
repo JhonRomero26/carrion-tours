@@ -134,9 +134,9 @@ const places = await getPlaces()
           location.textContent!.toLowerCase().includes(value.toLowerCase())
         )
       ) {
-        slide.classList.add('hidden-animated')
+        slide.classList.add('hidden')
       } else {
-        slide.classList.remove('hidden-animated')
+        slide.classList.remove('hidden')
       }
     })
   })
