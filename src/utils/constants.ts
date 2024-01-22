@@ -9,7 +9,7 @@ export const headerRoutes = [
   },
   {
     label: 'Loja de antaño',
-    path: '/workshops',
+    path: '/monuments',
   },
   {
     label: 'Festividades',

@@ -1,0 +1,143 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import HeroScreen from '@/components/HeroScreen.astro'
+import PresentationCard from '@/components/PresentationCard.astro'
+import { getPlaces } from '@/services/place'
+
+const places = await getPlaces()
+---
+
+<Layout title="Turismo en loja" description="Turismo en loja">
+  <main>
+    <HeroScreen
+      id="hero"
+      title={places[0].title}
+      image={places[0].image}
+      location={places[0].location}
+      description={places[0].description}
+      visitDate={places[0].visitDate}
+      categories={places[0].categories}
+      mapsUrl={places[0].locationMapUrl}
+      reservationUrl={places[0].reservationUrl}
+    >
+      {
+        places.map((place, i) => (
+          <PresentationCard
+            description={place.description}
+            image={place.image}
+            title={place.title}
+            categories={place.categories}
+            location={place.location}
+            visitDate={place.visitDate}
+            item={String(i + 1)}
+            mapsUrl={place.locationMapUrl}
+            reservationUrl={place.reservationUrl}
+          />
+        ))
+      }
+    </HeroScreen>
+  </main>
+</Layout>
+
+<script>
+  import {
+    averageImageColor,
+    contrastColor,
+    rgb2hex,
+  } from '@/utils/calculate_colors'
+
+  const $hero = document.querySelector('#hero') as HTMLImageElement
+  const $heroImage = document.querySelector('#hero-image') as HTMLImageElement
+
+  const $slides = document.querySelectorAll('[data-id=slide]')
+  const $heroInfo = document.querySelector('#hero-info') as HTMLElement
+
+  const $menuButton = document.querySelector('#menu-button')
+  const $menu = document.querySelector('#header-menu')
+
+  const changeColors = ({ image }: { image: HTMLImageElement }) => {
+    const rgb = averageImageColor(image)
+    const contrastWhite = contrastColor({
+      rgb1: rgb,
+      rgb2: { r: 255, g: 255, b: 255 },
+    })
+    const contrastDark = contrastColor({
+      rgb1: rgb,
+      rgb2: { r: 30, g: 41, b: 59 },
+    })
+
+    const colorContrasted =
+      Math.max(contrastWhite, contrastDark) === contrastWhite
+        ? 'text-slate-100'
+        : 'text-slate-900'
+
+    $hero.classList.remove('text-slate-100', 'text-slate-900')
+    $hero.classList.add(colorContrasted)
+    $hero.style.setProperty('--hero-background', rgb2hex(rgb, 95))
+
+    $menuButton!.classList.remove('text-slate-100', 'text-slate-900')
+    $menuButton!.classList.add(colorContrasted)
+    $menu!.classList.remove('md:text-slate-100', 'md:text-slate-900')
+    $menu!.classList.add(`md:${colorContrasted}`)
+  }
+
+  changeColors({ image: $heroImage })
+  if ($slides)
+    $slides.forEach((slide) => {
+      const image = slide.querySelector('img') as HTMLImageElement
+
+      slide.addEventListener('click', (e) => {
+        if ($heroImage.src !== image.src) {
+          changeColors({ image })
+
+          $heroImage.src = image.src
+          $heroInfo.querySelector('#title')!.textContent =
+            slide.querySelector('#title')!.textContent
+
+          $heroInfo.querySelector('#location')!.textContent =
+            slide.querySelector('#location')!.textContent
+
+          $heroInfo.querySelector('#calendar')!.textContent =
+            slide.querySelector('#calendar')!.textContent
+
+          $heroInfo.querySelector('#hero-description')!.textContent =
+            slide.getAttribute('data-description')
+
+          $heroInfo
+            .querySelector('#reservation-url')!
+            .setAttribute('href', slide.getAttribute('data-reservation-url')!)
+
+          $heroInfo
+            .querySelector('#maps-url')!
+            .setAttribute('href', slide.getAttribute('data-maps-url')!)
+        }
+      })
+    })
+
+  const $search = document.querySelector('#hero-search') as HTMLInputElement
+
+  $search.addEventListener('input', () => {
+    $slides.forEach((slide) => {
+      const title = slide.querySelector('#title')!
+      const location = slide.querySelector('#location')!
+      const categoryContainer = slide.querySelector('#categories')!
+      const categories = Array.of(...categoryContainer.children)
+        .map((el) => el.textContent)
+        .join(' ')
+
+      const { value } = $search
+
+      if (
+        !(
+          categories.includes(value) ||
+          title.textContent!.toLowerCase().includes(value.toLowerCase()) ||
+          location.textContent!.toLowerCase().includes(value.toLowerCase())
+        )
+      ) {
+        slide.classList.add('hidden')
+      } else {
+        slide.classList.remove('hidden')
+      }
+    })
+  })
+</script>

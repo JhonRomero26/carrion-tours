@@ -22,6 +22,7 @@ export default defineConfig({
           'calendar-plus',
           'chevron-down',
           'x',
+          'antenna-bars-off',
         ],
       },
     }),
