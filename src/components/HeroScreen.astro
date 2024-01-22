@@ -39,68 +39,70 @@ const {
     <div
       class="flex flex-col gap-8 h-full md:flex-row md:justify-between items-center overflow-hidden"
     >
-      <div
-        id="hero-info"
-        data-scroll="hidden"
-        class="overflow-y-auto md:h-full flex flex-col justify-center py-8 max-w-md max-md:text-center"
-      >
-        <h2 id="title" class="font-bold mb-4 text-3xl">
-          {title}
-        </h2>
-        <div class="flex my-6 max-md:justify-center flex-wrap gap-2">
-          {
-            categories &&
-              categories.map((category) => (
-                <Pill class="bg-blue-100 text-blue-600">{category}</Pill>
-              ))
-          }
-        </div>
-        <div class="w-full mt-2 flex flex-col gap-2 font-medium text-center">
-          <div class="flex items-center gap-2">
-            <Icon name="tabler:map-pin" />
-            <span id="location">{location}</span>
+      <div class="py-8 h-full grid place-content-center overflow-hidden">
+        <div
+          id="hero-info"
+          data-scroll="hidden"
+          class="overflow-y-auto max-md:text-center max-w-md"
+        >
+          <h2 id="title" class="font-bold mb-4 text-3xl">
+            {title}
+          </h2>
+          <div class="flex my-6 max-md:justify-center flex-wrap gap-2">
+            {
+              categories &&
+                categories.map((category) => (
+                  <Pill class="bg-blue-100 text-blue-600">{category}</Pill>
+                ))
+            }
           </div>
-          <div class="flex items-center gap-2">
-            <Icon name="tabler:calendar" />
-            <span id="calendar">{visitDate}</span>
+          <div class="w-full mt-2 flex flex-col gap-2 font-medium text-center">
+            <div class="flex items-center gap-2">
+              <Icon name="tabler:map-pin" />
+              <span id="location">{location}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <Icon name="tabler:calendar" />
+              <span id="calendar">{visitDate}</span>
+            </div>
           </div>
-        </div>
-        <div class="max-md:overflow-hidden">
-          <p id="hero-description" data-scroll="hidden" class="mt-4 h-full">
-            {description}
-          </p>
-        </div>
-        <div class="flex mt-6 max-md:justify-center gap-2">
-          <a
-            id="reservation-url"
-            class="px-4 py-2 rounded flex gap-2 items-center hover:bg-blue-800 bg-blue-900 text-white transition-colors"
-            rel="noreferrer"
-            target="_blank"
-            href={reservationUrl}
-          >
-            <Icon name="tabler:calendar-plus" />
-            <span>Reserva tu visita</span>
-          </a>
-          <a
-            id="maps-url"
-            class="px-4 py-2 rounded flex gap-2 items-center hover:bg-white text-blue-900 bg-white/85 transition-colors"
-            rel="noreferrer"
-            target="_blank"
-            href={mapsUrl}
-          >
-            <Icon name="tabler:map" />
-            <span>Mirar en el mapa</span>
-          </a>
-        </div>
-        <div class="mt-8 flex justify-center">
-          <button
-            id="show-more"
-            class="flex gap-2 items-center bg-white
+          <div class="max-md:overflow-hidden">
+            <p id="hero-description" data-scroll="hidden" class="mt-4 h-full">
+              {description}
+            </p>
+          </div>
+          <div class="flex mt-6 max-md:justify-center gap-2">
+            <a
+              id="reservation-url"
+              class="px-4 py-2 rounded flex gap-2 items-center hover:bg-blue-800 bg-blue-900 text-white transition-colors"
+              rel="noreferrer"
+              target="_blank"
+              href={reservationUrl}
+            >
+              <Icon name="tabler:calendar-plus" />
+              <span>Reserva tu visita</span>
+            </a>
+            <a
+              id="maps-url"
+              class="px-4 py-2 rounded flex gap-2 items-center hover:bg-white text-blue-900 bg-white/85 transition-colors"
+              rel="noreferrer"
+              target="_blank"
+              href={mapsUrl}
+            >
+              <Icon name="tabler:map" />
+              <span>Mirar en el mapa</span>
+            </a>
+          </div>
+          <div class="mt-8 flex justify-center">
+            <button
+              id="show-more"
+              class="flex gap-2 items-center bg-white
              text-blue-900 px-4 py-2 rounded md:hidden"
-          >
-            <Icon name="tabler:chevron-down" />
-            <span>Mostrar más</span>
-          </button>
+            >
+              <Icon name="tabler:chevron-down" />
+              <span>Mostrar más</span>
+            </button>
+          </div>
         </div>
       </div>
       <div
