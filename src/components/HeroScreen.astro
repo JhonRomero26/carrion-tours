@@ -30,7 +30,7 @@ const {
 <section
   id={id}
   data-id="hero-presentation"
-  class="w-full overflow-hidden relative h-screen"
+  class="w-full overflow-hidden relative h-full"
   style={{
     '--hero-background': '',
   }}
@@ -103,13 +103,12 @@ const {
           </button>
         </div>
       </div>
-
       <div
         id="slides-container"
-        class="md:max-w-sm max-md:absolute flex flex-col gap-4 items-center max-md:backdrop-blur-xl max-md:w-full h-full"
+        class="md:max-w-sm max-md:absolute flex justify-center max-md:backdrop-blur-xl max-md:w-full md:h-full max-md:inset-0 max-md:pt-16"
       >
-        <div class="max-md:max-w-sm w-full h-full">
-          <header class="w-full pb-2">
+        <div class="max-md:max-w-sm w-full flex flex-col gap-4 h-full">
+          <header class="w-full">
             <div class="flex gap-2">
               <div
                 class="flex px-4 w-full py-2 gap-2 bg-white/80 rounded items-center"
